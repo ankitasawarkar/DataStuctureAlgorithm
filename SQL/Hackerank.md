@@ -95,7 +95,7 @@ HAVING COUNT(H.hacker_id) IN (SELECT MAX(Created) FROM Counting)
 ORDER BY challenges_created DESC, H.hacker_id;
 ```
 
-[Contest Leaderboard](https://www.hackerrank.com/challenges/contest-leaderboard/problem) - Medium 
+[Contest Leaderboard](https://www.hackerrank.com/challenges/contest-leaderboard/problem) - Medium / Basic Join
 
 You did such a great job helping Julia with her last coding contest challenge that she wants you to work on this one, too!
 
@@ -111,3 +111,22 @@ FROM Hackers H INNER JOIN (
 GROUP BY H.hacker_id, H.name
 ORDER BY total_score DESC, H.hacker_id;
 ```
+
+[Symmetric Pairs](https://www.hackerrank.com/challenges/symmetric-pairs/problem) - Medium / Advanced Join 
+
+You are given a table, Functions, containing two columns: X and Y.\
+Two pairs (X1, Y1) and (X2, Y2) are said to be symmetric pairs if X1 = Y2 and X2 = Y1.\
+Write a query to output all such symmetric pairs in ascending order by the value of X. List the rows such that X1 ≤ Y1.
+
+```sql
+SELECT f1.X, f1.Y FROM Functions f1
+INNER JOIN Functions f2 ON f1.X=f2.Y AND f1.Y=f2.X
+GROUP BY f1.X, f1.Y
+HAVING COUNT(f1.X)>1 or f1.X<f1.Y
+ORDER BY f1.X ;
+```
+
+[](https://www.hackerrank.com/challenges/15-days-of-learning-sql/problem?isFullScreen=true)
+Julia conducted a 15 days of learning SQL contest. The start date of the contest was March 01, 2016 and the end date was March 15, 2016.
+
+Write a query to print total number of unique hackers who made at least  submission each day (starting on the first day of the contest), and find the hacker_id and name of the hacker who made maximum number of submissions each day. If more than one such hacker has a maximum number of submissions, print the lowest hacker_id. The query should print this information for each day of the contest, sorted by the date.
